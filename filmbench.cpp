@@ -1138,9 +1138,10 @@ static int verifyRows(const std::string& path)
         if (sv <= 0) continue;
         double e = c - t - sv;
         // The tolerance cannot be a constant: everything outside S -- the round trip, the
-        // statement log write -- grows with the query, and on a loaded machine a 2% bound
-        // already flagged honest rows. 0.25 ms or 5% of the row, whichever is larger, still
-        // catches a row whose S came from another execution, which is what the check is for.
+        // statement log write -- grows with the query, and a tighter bound than this one
+        // flagged honest rows on a loaded machine. 0.25 ms or 5% of the row, whichever is
+        // larger, still catches a row whose S came from another execution: that error is the
+        // size of an execution, not a few percent.
         double tol = 0.05 * c;
         if (tol < 0.25) tol = 0.25;
         ++rows;
