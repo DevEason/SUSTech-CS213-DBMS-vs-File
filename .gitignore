@@ -1,0 +1,17 @@
+# This repository ships exactly what is named below, and nothing else.
+#
+# A denylist was tried first and failed its own dry run: it let figures/*.tex,
+# a 3.8 MB database dump and a stray .tmp file through.  So: ignore everything
+# first, then un-ignore the submission.
+*
+!.gitignore
+!README.md
+!filmbench.cpp
+!filmdb-load.sql
+!project1.pdf
+!report.pdf
+!figures/
+figures/*
+!figures/chart-scoreboard.png
+!figures/pipeline.png
+!figures/chart-twoclocks.png
